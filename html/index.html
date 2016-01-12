@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<!--
+    This is an HTML page that contains a CSS and a Javascript file.
+    
+    Run this sample by clicking the 'Preview' button on top;
+    a new tab will open with the current page open.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Hello world from Cloud9!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+    <div class="container-fluid">
+            <div class="row"> <font size=6>
+                <div class="col-sm-2" id="time">time</div>
+                <div class="col-sm-2" id="flags">flag#</div>
+                <div class="col-sm-2" id="state">state</div>
+            </font></div>
+        <canvas id="mineSweeper" width='1200' height='600' tabindex=-1 style="border:1px solid #000000;"></canvas>
+        
+    </div>
+    <div id="title">(0, 0)</div>
+        <!-- load scripts at the bottom of your page -->
+    <script src="js/minesweeper.js"></script>
+    </body>
+</html>
