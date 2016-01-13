@@ -188,30 +188,20 @@ var title = document.getElementById('title');
 
 var lastBlock = {x:0, y:0};
 
-var pressedL = false;
-var pressedR = false;
-var pressedM = false;
+var pressedL;
+var pressedR;
+var pressedM;
 
-var flagged = [];
-var opened = [];
-for (var i=0; i<X_SIZE; i++) {
-    var list = [];
-    var list2 = [];
-    for (var j=0; j<Y_SIZE; j++) {
-        list.push(false);
-        list2.push(false);
-    }
-    flagged.push(list);
-    opened.push(list2);
-}
-var openNum = 0;
-var flagNum = 0;
+var flagged;
+var opened;
+var openNum;
+var flagNum;
 
-var timeMill = 0;
-var timer = null;
+var timeMill;
+var timer;
 var INTERVAL = 500;
 
-var map = null;
+var map;
 
 function canvasMouseMove(evt) {
     var nowX = Math.floor(evt.offsetX/(BLOCK_SIZE+BORDER_SIZE));
@@ -256,15 +246,16 @@ canvas.addEventListener('mousedown', canvasMouseDown);
 
 function canvasMouseUp(evt) {
     evt.preventDefault();
-    if (timer==null) {
-        timer = setInterval(function(){
-            timeMill += INTERVAL;
-            document.getElementById("time").innerHTML = Math.floor(timeMill/1000);
-        }, INTERVAL);
-    }
-    if (!map)   map = genMap(lastBlock.x, lastBlock.y);
+
     switch (evt.button) {
         case 0:
+		    if (timer==null) {
+				timer = setInterval(function(){
+					timeMill += INTERVAL;
+					document.getElementById("time").innerHTML = Math.floor(timeMill/1000);
+				}, INTERVAL);
+			}
+			if (!map)   map = genMap(lastBlock.x, lastBlock.y);
             pressedL = false;
             if (pressedR && !pressedM) {
                 drawChunk(lastBlock.x, lastBlock.y, NORMAL_COLOR);
@@ -296,11 +287,37 @@ canvas.addEventListener('mouseup', canvasMouseUp);
 canvas.oncontextmenu = function(e){e.preventDefault();}
 canvas.onselectstart = function () { return false; }
 context.fillStyle = BACK_COLOR;
-context.fillRect(0, 0, X_SIZE*BLOCK_SIZE+(X_SIZE-1)*BORDER_SIZE, Y_SIZE*BLOCK_SIZE+(Y_SIZE-1)*BORDER_SIZE);
-for (var i=0; i<Y_SIZE; i++) {
-    for (var j=0; j<X_SIZE; j++) {
-        drawBlock(j, i, NORMAL_COLOR);
-    }
+
+function init() {
+	pressedL = false;
+	pressedR = false;
+	pressedM = false;
+	flagged = [];
+	opened = [];
+	for (var i=0; i<X_SIZE; i++) {
+		var list = [];
+		var list2 = [];
+		for (var j=0; j<Y_SIZE; j++) {
+			list.push(false);
+			list2.push(false);
+	}
+    flagged.push(list);
+    opened.push(list2);
+}
+	openNum = 0;
+	flagNum = 0;
+	timeMill = 0;
+	timer = null;
+
+	map = null;
+	context.fillRect(0, 0, X_SIZE*BLOCK_SIZE+(X_SIZE-1)*BORDER_SIZE, Y_SIZE*BLOCK_SIZE+(Y_SIZE-1)*BORDER_SIZE);
+	for (var i=0; i<Y_SIZE; i++) {
+		for (var j=0; j<X_SIZE; j++) {
+			drawBlock(j, i, NORMAL_COLOR);
+		}
+	}
 }
 
 context.font = "bold 24px Courier";
+
+init();
