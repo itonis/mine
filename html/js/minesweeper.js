@@ -59,7 +59,7 @@ function drawBlock(x, y, color) {
 function drawNumber(x, y, number) {
     drawBlock(x, y, CLICK_COLOR);
     context.fillStyle = NUMBER_COLORS[number];
-    context.fillText(number, (BLOCK_SIZE+BORDER_SIZE)*x+9, (BLOCK_SIZE+BORDER_SIZE)*y+24, BLOCK_SIZE);
+    context.fillText(number, (BLOCK_SIZE+BORDER_SIZE)*x+14, (BLOCK_SIZE+BORDER_SIZE)*y+24, BLOCK_SIZE);
 }
 
 function drawChunk(centerX, centerY, color) {
@@ -289,7 +289,6 @@ function reloadListener(evt) {
 
 canvas.oncontextmenu = function(e){e.preventDefault();}
 canvas.onselectstart = function () { return false; }
-context.fillStyle = BACK_COLOR;
 
 function init() {
 	detachLiseners();
@@ -315,6 +314,8 @@ function init() {
 	timer = null;
 
 	map = null;
+	
+	context.fillStyle = BACK_COLOR;
 	context.fillRect(0, 0, X_SIZE*BLOCK_SIZE+(X_SIZE-1)*BORDER_SIZE, Y_SIZE*BLOCK_SIZE+(Y_SIZE-1)*BORDER_SIZE);
 	for (var i=0; i<Y_SIZE; i++) {
 		for (var j=0; j<X_SIZE; j++) {
