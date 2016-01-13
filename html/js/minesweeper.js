@@ -292,6 +292,7 @@ canvas.onselectstart = function () { return false; }
 context.fillStyle = BACK_COLOR;
 
 function init() {
+	detachLiseners();
 	pressedL = false;
 	pressedR = false;
 	pressedM = false;
@@ -310,6 +311,7 @@ function init() {
 	openNum = 0;
 	flagNum = 0;
 	timeMill = 0;
+	clearInterval(timer);
 	timer = null;
 
 	map = null;
