@@ -59,7 +59,7 @@ function drawBlock(x, y, color) {
 function drawNumber(x, y, number) {
     drawBlock(x, y, CLICK_COLOR);
     context.fillStyle = NUMBER_COLORS[number];
-    context.fillText(number, (BLOCK_SIZE+BORDER_SIZE)*x+14, (BLOCK_SIZE+BORDER_SIZE)*y+24, BLOCK_SIZE);
+    context.fillText(number, (BLOCK_SIZE+BORDER_SIZE)*x+16, (BLOCK_SIZE+BORDER_SIZE)*y+24, BLOCK_SIZE);
 }
 
 function drawChunk(centerX, centerY, color) {
@@ -133,7 +133,6 @@ function expandNumber(x, y) {
 
 function bigText(text, fillColor) {
     context.font = "bold 144px Arial";
-    context.textAlign = "center";
     context.strokeStyle = "#0e0e0e";
     context.lineWidth = 4;
     context.strokeText(text, (BLOCK_SIZE+BORDER_SIZE)*X_SIZE/2+1, BLOCK_SIZE*10/16*Y_SIZE, 400);
@@ -322,6 +321,7 @@ function init() {
 			drawBlock(j, i, NORMAL_COLOR);
 		}
 	}
+    context.textAlign = "center";
 	context.font = "bold 24px Courier";	
 	canvas.addEventListener('mousemove', canvasMouseMove);
 	canvas.addEventListener('mousedown', canvasMouseDown);
