@@ -319,6 +319,7 @@ function init() {
 			drawBlock(j, i, NORMAL_COLOR);
 		}
 	}
+	console.log('yea');
 	canvas.addEventListener('mousemove', canvasMouseMove);
 	canvas.addEventListener('mousedown', canvasMouseDown);
 	canvas.addEventListener('mouseup', canvasMouseUp);
