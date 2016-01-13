@@ -321,12 +321,10 @@ function init() {
 			drawBlock(j, i, NORMAL_COLOR);
 		}
 	}
-	console.log('yea');
+	context.font = "bold 24px Courier";	
 	canvas.addEventListener('mousemove', canvasMouseMove);
 	canvas.addEventListener('mousedown', canvasMouseDown);
 	canvas.addEventListener('mouseup', canvasMouseUp);
 }
-
-context.font = "bold 24px Courier";
 
 init();
