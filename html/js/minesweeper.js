@@ -152,7 +152,7 @@ function onEnd() {
     clearInterval(timer);
     window.setTimeout(function() {
         canvas.addEventListener("mouseup", function(evt){
-           window.location.reload();
+           init();
         });
     }, 250);
 }
