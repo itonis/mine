@@ -145,15 +145,14 @@ function detachLiseners() {
     canvas.removeEventListener("mousemove", canvasMouseMove);
     canvas.removeEventListener("mousedown", canvasMouseDown);
     canvas.removeEventListener("mouseup", canvasMouseUp);
+	canvas.removeEventListener("mouseup", reloadListener);
 }
 
 function onEnd() {
     detachLiseners();
     clearInterval(timer);
     window.setTimeout(function() {
-        canvas.addEventListener("mouseup", function(evt){
-           init();
-        });
+        canvas.addEventListener("mouseup", reloadListener);
     }, 250);
 }
 
@@ -219,7 +218,7 @@ function canvasMouseMove(evt) {
     lastBlock.x = nowX;
     lastBlock.y = nowY; 
 }
-canvas.addEventListener('mousemove', canvasMouseMove);
+
 
 function canvasMouseDown(evt) {
     evt.preventDefault();
@@ -242,7 +241,7 @@ function canvasMouseDown(evt) {
         drawChunk(lastBlock.x, lastBlock.y, CLICK_COLOR);
     drawBlock(lastBlock.x, lastBlock.y, CLICK_COLOR);
 }
-canvas.addEventListener('mousedown', canvasMouseDown);
+
 
 function canvasMouseUp(evt) {
     evt.preventDefault();
@@ -282,7 +281,11 @@ function canvasMouseUp(evt) {
         default:
     }
 }
-canvas.addEventListener('mouseup', canvasMouseUp);
+
+
+function reloadListener(evt) {
+	init();
+}
 
 canvas.oncontextmenu = function(e){e.preventDefault();}
 canvas.onselectstart = function () { return false; }
@@ -316,6 +319,9 @@ function init() {
 			drawBlock(j, i, NORMAL_COLOR);
 		}
 	}
+	canvas.addEventListener('mousemove', canvasMouseMove);
+	canvas.addEventListener('mousedown', canvasMouseDown);
+	canvas.addEventListener('mouseup', canvasMouseUp);
 }
 
 context.font = "bold 24px Courier";
